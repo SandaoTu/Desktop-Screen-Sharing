@@ -5,14 +5,13 @@ import java.net.Socket;
 
 public class AliveConnection implements Runnable {
 
-	private int alivePort = 55556;
 	private boolean aliveStatus = true;
 
 	@Override
 	public void run() {
 
 		try {
-			ServerSocket serverSocket = new ServerSocket(alivePort);
+			ServerSocket serverSocket = new ServerSocket(Main.CLIENT_ALIVE_PORT);
 			while (aliveStatus) {
 				Socket sock = serverSocket.accept();
 				sock.close();

@@ -12,14 +12,13 @@ import javax.imageio.ImageIO;
 
 public class PhotoSender implements Runnable {
 
-	private int photoSendingPort = 55557;
 	private boolean photoSenderAliveStatus = true;
 
 	@Override
 	public void run() {
 		while (photoSenderAliveStatus) {
 			try {
-				ServerSocket serverSocket = new ServerSocket(photoSendingPort);
+				ServerSocket serverSocket = new ServerSocket(Main.CLIENT_PHOTO_SENDING_PORT);
 				Socket sock = serverSocket.accept();
 				ObjectOutputStream out = new ObjectOutputStream(sock.getOutputStream());
 				out.flush();

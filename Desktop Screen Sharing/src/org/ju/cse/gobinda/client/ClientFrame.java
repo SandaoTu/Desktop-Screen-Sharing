@@ -21,7 +21,6 @@ public class ClientFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField tIP;
-	private JTextField tPort;
 	private JTextField tNameField;
 
 	private JLabel connectionStatus = null;
@@ -30,7 +29,7 @@ public class ClientFrame extends JFrame {
 		setTitle("CLIENT");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 258, 416);
+		setBounds(100, 100, 258, 367);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,32 +61,6 @@ public class ClientFrame extends JFrame {
 		btnNewButton_1.setFont(new Font("Dialog", Font.PLAIN, 15));
 		panel_1.add(btnNewButton_1);
 
-		JLabel lblSetPortNumber = new JLabel("SET PORT NUMBER");
-		lblSetPortNumber.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSetPortNumber.setFont(new Font("Dialog", Font.PLAIN, 15));
-		lblSetPortNumber.setBounds(10, 125, 230, 31);
-		contentPane.add(lblSetPortNumber);
-
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(10, 157, 230, 31);
-		contentPane.add(panel_2);
-		panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.X_AXIS));
-
-		tPort = new JTextField();
-		tPort.setFont(new Font("Dialog", Font.PLAIN, 15));
-		tPort.setText("55555");
-		tPort.setColumns(10);
-		panel_2.add(tPort);
-
-		JButton btnClr = new JButton("CLR");
-		btnClr.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				tPort.setText("");
-			}
-		});
-		btnClr.setFont(new Font("Dialog", Font.PLAIN, 15));
-		panel_2.add(btnClr);
-
 		JButton btnDisconnect = new JButton("Disconnect");
 		btnDisconnect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -95,7 +68,7 @@ public class ClientFrame extends JFrame {
 			}
 		});
 		btnDisconnect.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnDisconnect.setBounds(10, 330, 230, 37);
+		btnDisconnect.setBounds(10, 282, 230, 37);
 		contentPane.add(btnDisconnect);
 
 		JButton btnConnect = new JButton("Connect");
@@ -104,7 +77,6 @@ public class ClientFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				String serverIp = tIP.getText().trim();
-				String serverPort = tPort.getText().trim();
 				String myName = tNameField.getText();
 
 				if (myName.length() == 0) {
@@ -115,13 +87,9 @@ public class ClientFrame extends JFrame {
 					JOptionPane.showMessageDialog(null, "Enter IP address first!!!");
 					return;
 				}
-				if (serverPort.length() == 0) {
-					JOptionPane.showMessageDialog(null, "Enter port number first!!!");
-					return;
-				}
 
 				Client.initialize();
-				if (Client.sendMessage(serverIp, serverPort, myName)) {
+				if (Client.sendMessage(serverIp, myName)) {
 					Client.startService();
 					connectionStatus.setText("you are Connected");
 				} else {
@@ -129,7 +97,7 @@ public class ClientFrame extends JFrame {
 				}
 			}
 		});
-		btnConnect.setBounds(10, 285, 230, 37);
+		btnConnect.setBounds(10, 237, 230, 37);
 		contentPane.add(btnConnect);
 
 		connectionStatus = new JLabel("YOU ARE NOT CONNTECTED");
@@ -141,14 +109,14 @@ public class ClientFrame extends JFrame {
 		JLabel lblSetYourName = new JLabel("SET YOUR NAME");
 		lblSetYourName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSetYourName.setFont(new Font("Dialog", Font.PLAIN, 15));
-		lblSetYourName.setBounds(10, 199, 230, 31);
+		lblSetYourName.setBounds(10, 138, 230, 31);
 		contentPane.add(lblSetYourName);
 
 		tNameField = new JTextField();
 		tNameField.setFont(new Font("Dialog", Font.PLAIN, 15));
 		tNameField.setText("GOBINDA");
 		tNameField.setColumns(10);
-		tNameField.setBounds(10, 231, 164, 31);
+		tNameField.setBounds(10, 170, 164, 31);
 		contentPane.add(tNameField);
 
 		JButton btnClr_1 = new JButton("CLR");
@@ -158,7 +126,7 @@ public class ClientFrame extends JFrame {
 			}
 		});
 		btnClr_1.setFont(new Font("Dialog", Font.PLAIN, 15));
-		btnClr_1.setBounds(174, 230, 66, 31);
+		btnClr_1.setBounds(174, 169, 66, 31);
 		contentPane.add(btnClr_1);
 
 		setLocationRelativeTo(null);

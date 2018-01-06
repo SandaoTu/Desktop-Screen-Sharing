@@ -29,9 +29,9 @@ public class Client {
 		client = null;
 	}
 
-	public static boolean sendMessage(String serverIp, String serverPort, String message) {
+	public static boolean sendMessage(String serverIp, String message) {
 		try {
-			Socket socket = new Socket(serverIp, Integer.parseInt(serverPort));
+			Socket socket = new Socket(serverIp, Main.SERVER_PORT);
 			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 			out.flush();
 			out.writeObject(message);

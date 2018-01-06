@@ -1,4 +1,4 @@
-package org.ju.cse.gobinda.client;
+package org.ju.cse.gobinda.server;
 
 public class Main {
 
@@ -6,7 +6,11 @@ public class Main {
 	public static final int CLIENT_ALIVE_PORT = 55556;
 	public static final int CLIENT_PHOTO_SENDING_PORT = 55557;
 
+	public static ServerFrame serverFrame;
+
 	public static void main(String[] args) {
-		ClientFrame.initialize();
+		serverFrame = new ServerFrame();
+		serverFrame.setVisible(true);
 	}
+
 }
