@@ -11,7 +11,7 @@ public class AliveConnection implements Runnable {
 	public void run() {
 
 		try {
-			ServerSocket serverSocket = new ServerSocket(Main.CLIENT_ALIVE_PORT);
+			ServerSocket serverSocket = new ServerSocket(ClientMain.CLIENT_ALIVE_PORT);
 			while (aliveStatus) {
 				Socket sock = serverSocket.accept();
 				sock.close();

@@ -27,7 +27,7 @@ public class Client {
 
 	public BufferedImage getRemotePhoto() {
 		try {
-			Socket socket = new Socket(ip, Main.CLIENT_PHOTO_SENDING_PORT);
+			Socket socket = new Socket(ip, ServerMain.CLIENT_PHOTO_SENDING_PORT);
 			ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
 			BufferedImage screenshot = ImageIO.read(in);
 			socket.close();

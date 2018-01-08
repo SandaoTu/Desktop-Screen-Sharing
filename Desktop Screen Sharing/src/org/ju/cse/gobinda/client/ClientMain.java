@@ -1,6 +1,6 @@
 package org.ju.cse.gobinda.client;
 
-public class Main {
+public class ClientMain {
 
 	public static final int SERVER_PORT = 55555;
 	public static final int CLIENT_ALIVE_PORT = 55556;

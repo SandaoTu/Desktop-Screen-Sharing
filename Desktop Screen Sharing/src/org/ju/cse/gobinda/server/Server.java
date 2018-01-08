@@ -55,7 +55,7 @@ public class Server {
 		while (iterator.hasNext()) {
 			try {
 				Client c = iterator.next();
-				Socket socket = new Socket(c.getIp(), Main.CLIENT_ALIVE_PORT);
+				Socket socket = new Socket(c.getIp(), ServerMain.CLIENT_ALIVE_PORT);
 				socket.close();
 			} catch (Exception e) {
 				iterator.remove();
@@ -73,7 +73,7 @@ public class Server {
 		public void run() {
 			try {
 				cholbeKina = true;
-				serverSocket = new ServerSocket(Main.SERVER_PORT);
+				serverSocket = new ServerSocket(ServerMain.SERVER_PORT);
 				while (cholbeKina) {
 					Socket socket = serverSocket.accept();
 					ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
@@ -90,7 +90,7 @@ public class Server {
 
 					if (alreadyHave == false) {
 						addClient(new Client(socket, name));
-						Main.serverFrame.addClients(name);
+						ServerMain.serverFrame.addClients(name);
 					} else {
 						System.out.println("second connection");
 					}
